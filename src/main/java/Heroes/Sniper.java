@@ -9,6 +9,11 @@ public class Sniper extends MainHero {
                 Sniper.r.nextInt(10,50));
         this.maxArrows = 50;
         this.arrows = maxArrows;
+        this.attack = 7;
+        this.def = 2;
+        this.damage = new int[]{15, 35};
+        this.runningSpeed = 4;
+        this.team = "Dark";
     }
     public String getAbout() {
         return String.format("%s  Arrows: %d", super.getAbout(), this.arrows);

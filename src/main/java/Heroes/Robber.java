@@ -9,6 +9,11 @@ public class Robber extends MainHero {
                 Robber.r.nextInt(10, 50));
         this.maxDisguise = Robber.r.nextInt(0,11);
         this.disguise = maxDisguise;
+        this.attack = 5;
+        this.def = 2;
+        this.damage = new int[]{10, 25};
+        this.runningSpeed = 7;
+        this.team = "Dark";
     }
 
     public String getAbout() {

@@ -6,8 +6,12 @@ public abstract class MainHero implements GameInt {
     protected static Random r;
     protected int hp;
     protected int maxHp;
+    protected int[] damage;
+    protected int def;
+    protected int attack;
     protected int runningSpeed;
     protected String name;
+    protected String team;
 
     static {
         MainHero.r = new Random();
@@ -26,8 +30,8 @@ public abstract class MainHero implements GameInt {
     }
     @Override
     public String getAbout() {
-        return String.format("Name: %s  Type: %s  Hp: %d  RS: %d",
-                this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed);
+        return String.format("Team: %s  Name: %s  Type: %s  Hp: %d  RS: %d",
+                this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed);
     }
 
     @Override
@@ -50,8 +54,7 @@ public abstract class MainHero implements GameInt {
         target.GetDamage(MainHero.r.nextInt(10,20));
     }
 
-    public void getRunningSpeed(int getSpeed) {
-        if (getSpeed < 0) getSpeed *= 1;
-        this.runningSpeed += getSpeed;
+    public int getRunningSpeed() {
+        return runningSpeed;
     }
 }

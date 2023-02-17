@@ -9,6 +9,11 @@ public class XBowman extends MainHero {
                 XBowman.r.nextInt(10,50));
         this.maxArrows = 50;
         this.arrows = maxArrows;
+        this.attack = 5;
+        this.def = 2;
+        this.damage = new int[]{10, 25};
+        this.runningSpeed = 3;
+        this.team = "Light";
     }
 
     public void Attack (MainHero target) {
