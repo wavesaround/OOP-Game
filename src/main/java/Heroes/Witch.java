@@ -1,22 +1,18 @@
 package Heroes;
 
 public class Witch extends MainHero {
-    protected int mana;
-    protected int maxMana;
+    protected int magic;
 
     public Witch(String name) {
-        super(name, Witch.r.nextInt(100, 200),
-                Witch.r.nextInt(10,50));
-        this.maxMana = 100;
-        this.mana = maxMana;
-        this.attack = 2;
-        this.def = 2;
-        this.damage = new int[]{-15, -15};
-        this.runningSpeed = 2;
+        super(name, 30, 9);
+        this.attack = 17;
+        this.def = 12;
+        this.damage = new int[]{-5, -5};
+        this.magic = 1;
         this.team = "Dark";
     }
 
     public String getAbout() {
-        return String.format("%s  Mana: %d", super.getAbout(), this.mana);
+        return String.format("%s  Magic: %d", super.getAbout(), this.magic);
     }
 }

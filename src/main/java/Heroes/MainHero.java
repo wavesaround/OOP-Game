@@ -4,11 +4,11 @@ import java.util.Random;
 
 public abstract class MainHero implements GameInt {
     protected static Random r;
+    protected int attack;
+    protected int def;
+    protected int[] damage;
     protected int hp;
     protected int maxHp;
-    protected int[] damage;
-    protected int def;
-    protected int attack;
     protected int runningSpeed;
     protected String name;
     protected String team;

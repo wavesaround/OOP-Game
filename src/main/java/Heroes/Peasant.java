@@ -1,22 +1,20 @@
 package Heroes;
 
 public class Peasant extends MainHero {
-    protected int bread;
-    protected int maxBread;
+    protected int delivery;
+
 
     public Peasant(String name, String team) {
-        super(name, Peasant.r.nextInt(100, 200),
-                Peasant.r.nextInt(10, 50));
-        this.maxBread = Peasant.r.nextInt(10,30);
-        this.bread = maxBread;
-        this.attack = 0;
+        super(name, 1, 3);
+        this.attack = 1;
         this.def = 1;
-        this.damage = new int[]{0, 0};
-        this.runningSpeed = 6;
+        this.damage = new int[]{1, 1};
+        this.runningSpeed = 3;
+        this.delivery = 1;
         this.team = team;
     }
 
     public String getAbout() {
-        return String.format("%s  Bread: %d", super.getAbout(), this.bread);
+        return String.format("%s  Bread: %d", super.getAbout(), this.delivery);
     }
 }

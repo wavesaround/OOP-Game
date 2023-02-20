@@ -2,17 +2,13 @@ package Heroes;
 
 public class Robber extends MainHero {
     protected int disguise;
-    protected int maxDisguise;
 
     public Robber(String name) {
-        super(name, Robber.r.nextInt(100, 200),
-                Robber.r.nextInt(10, 50));
-        this.maxDisguise = Robber.r.nextInt(0,11);
-        this.disguise = maxDisguise;
-        this.attack = 5;
-        this.def = 2;
-        this.damage = new int[]{10, 25};
-        this.runningSpeed = 7;
+        super(name, 10, 6);
+        this.attack = 8;
+        this.def = 3;
+        this.damage = new int[]{2, 4};
+        this.disguise = 5;
         this.team = "Dark";
     }
 
