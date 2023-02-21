@@ -3,8 +3,8 @@ package Heroes;
 public class Robber extends MainHero {
     protected int disguise;
 
-    public Robber(String name) {
-        super(name, 10, 6);
+    public Robber(String name, int x, int y) {
+        super(name, 10, 6, x, y);
         this.attack = 8;
         this.def = 3;
         this.damage = new int[]{2, 4};

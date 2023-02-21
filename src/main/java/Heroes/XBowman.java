@@ -4,8 +4,8 @@ public class XBowman extends MainHero {
     protected int shots;
     protected int maxShots;
 
-    public XBowman(String name) {
-        super(name, 10, 4);
+    public XBowman(String name, int x, int y) {
+        super(name, 10, 4, x, y);
         this.attack = 6;
         this.def = 3;
         this.maxShots = 16;

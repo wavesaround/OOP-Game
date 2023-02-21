@@ -3,8 +3,8 @@ package Heroes;
 public class Spearman extends MainHero {
     protected boolean horse;
 
-    public Spearman(String name) {
-        super(name, 10, 4);
+    public Spearman(String name, int x, int y) {
+        super(name, 10, 4, x, y);
         this.attack = 4;
         this.def = 5;
         this.damage = new int[]{1, 3};

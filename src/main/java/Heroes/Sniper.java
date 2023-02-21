@@ -3,8 +3,8 @@ package Heroes;
 public class Sniper extends MainHero {
     protected int shots;
 
-    public Sniper(String name) {
-        super(name, 15, 9);
+    public Sniper(String name, int x, int y) {
+        super(name, 15, 9, x, y);
         this.attack = 12;
         this.def = 10;
         this.shots = 32;
