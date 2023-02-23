@@ -1,6 +1,5 @@
 package Heroes;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class MainHero implements GameInt {
@@ -13,7 +12,7 @@ public abstract class MainHero implements GameInt {
     protected int runningSpeed;
     protected String name;
     protected String team;
-    protected Field field;
+    protected Battlefield bField;
 
     static {
         MainHero.r = new Random();
@@ -24,16 +23,7 @@ public abstract class MainHero implements GameInt {
         this.hp = hp;
         this.maxHp = hp;
         this.name = name;
-        this.field = new Field(x, y);
-    }
-
-//    public MainHero(String name, int x, int y) {
-//        this(name, MainHero.r.nextInt(100, 200),
-//                MainHero.r.nextInt(10,50));
-//
-//    }
-    public void findTarget(ArrayList<MainHero> enemies) {
-
+        this.bField = new Battlefield(x, y);
     }
 
     @Override
@@ -42,9 +32,8 @@ public abstract class MainHero implements GameInt {
                 this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed);
     }
 
-    @Override
-    public void Step() {
-        System.out.println("Здесь пока ничего нет");
+    public int getHp() {
+        return hp;
     }
 
     public void getHp(int Hp) {
@@ -65,4 +54,6 @@ public abstract class MainHero implements GameInt {
     public int getRunningSpeed() {
         return runningSpeed;
     }
+
 }
+

@@ -11,9 +11,8 @@ public class Main {
         ArrayList<MainHero> sessionStep = team1;
         sessionStep.addAll(team2);
         sortByRS(sessionStep);
-
+        sessionStep.forEach(mainHero -> mainHero.step(team1, team2));
         for (MainHero item: sessionStep) { System.out.println(item.getAbout()); }
-
     }
 
     /**

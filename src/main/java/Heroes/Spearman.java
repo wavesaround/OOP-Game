@@ -1,5 +1,7 @@
 package Heroes;
 
+import java.util.ArrayList;
+
 public class Spearman extends MainHero {
     protected boolean horse;
 
@@ -13,5 +15,10 @@ public class Spearman extends MainHero {
     }
     public String getAbout() {
         return String.format("%s  Horse: %b", super.getAbout(), this.horse);
+    }
+
+    @Override
+    public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+
     }
 }

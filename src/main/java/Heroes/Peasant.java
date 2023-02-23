@@ -1,5 +1,7 @@
 package Heroes;
 
+import java.util.ArrayList;
+
 public class Peasant extends MainHero {
     protected int delivery;
 
@@ -16,5 +18,10 @@ public class Peasant extends MainHero {
 
     public String getAbout() {
         return String.format("%s  Bread: %d", super.getAbout(), this.delivery);
+    }
+
+    @Override
+    public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+
     }
 }

@@ -1,5 +1,7 @@
 package Heroes;
 
+import java.util.ArrayList;
+
 public class Monk  extends MainHero {
     protected int magic;
 
@@ -14,5 +16,10 @@ public class Monk  extends MainHero {
 
     public String getAbout() {
         return String.format("%s  Magic: %d", super.getAbout(), this.magic);
+    }
+
+    @Override
+    public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+
     }
 }

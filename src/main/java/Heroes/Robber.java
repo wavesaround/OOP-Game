@@ -1,5 +1,7 @@
 package Heroes;
 
+import java.util.ArrayList;
+
 public class Robber extends MainHero {
     protected int disguise;
 
@@ -14,5 +16,10 @@ public class Robber extends MainHero {
 
     public String getAbout() {
         return String.format("%s  Disguise: %d", super.getAbout(), this.disguise);
+    }
+
+    @Override
+    public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+
     }
 }

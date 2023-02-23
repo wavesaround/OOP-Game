@@ -1,5 +1,10 @@
 package Heroes;
 
+import com.sun.tools.javac.Main;
+
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+
 public class XBowman extends MainHero {
     protected int shots;
     protected int maxShots;
@@ -16,17 +21,48 @@ public class XBowman extends MainHero {
 
     public void Attack (MainHero target) {
         if (shots > 0) {
-            target.GetDamage(MainHero.r.nextInt(10, 20));
-            this.shots -= 1;
+            target.GetDamage(r.nextInt(this.damage[0], this.damage[1] + 1));
         }
         else target.GetDamage(0);
     }
 
-    public void getArrows(int Arrows)  {
-        this.shots = Arrows + this.shots > this.maxShots ? this.maxShots : this.shots + Arrows;
+    public boolean getArrows(ArrayList<MainHero> allies)  {
+        boolean result = false;
+        for (MainHero item : allies) {
+            if(item.getClass().getSimpleName().equals("Peasant") & item.getHp() > 0) {
+                return true;
+            }
+        }
+        return result;
     }
 
     public String getAbout() {
         return String.format("%s  Arrows: %d", super.getAbout(), this.shots);
     }
+
+    @Override
+    public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+        ArrayList<MainHero> enemies;
+        ArrayList<MainHero> allies;
+        if(team1.contains(this)) { enemies = team2; allies = team1;}
+        else { enemies = team1; allies = team2; }
+
+        double minValue = Point2D.distance(this.bField.x, this.bField.y, enemies.get(0).bField.x, enemies.get(0).bField.y);
+        double temp;
+        MainHero target = enemies.get(0);
+        if(this.hp != 0) {
+            for (MainHero enemy:enemies) {
+                temp = Point2D.distance(this.bField.x, this.bField.y, enemies.get(0).bField.x, enemies.get(0).bField.y);
+                if(temp < minValue) {
+                    minValue = temp;
+                    target = enemy;
+                }
+            }
+
+            Attack(target);
+
+            this.shots -= this.getArrows(allies) ? 0 : 1;
+        }
+    }
+
 }
