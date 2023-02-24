@@ -22,6 +22,6 @@ public class Peasant extends MainHero {
 
     @Override
     public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
-
+        if (!this.state.equals("Die")) this.state = "Stand";
     }
 }

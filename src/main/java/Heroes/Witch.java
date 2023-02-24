@@ -1,5 +1,6 @@
 package Heroes;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class Witch extends MainHero {
@@ -20,6 +21,16 @@ public class Witch extends MainHero {
 
     @Override
     public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+        if (state.equals("Die") || magic <= 0) return;
+        ArrayList<MainHero> allies;
+        if(team1.contains(this)) { allies = team1;}
+        else { allies = team2; }
 
+        for (MainHero ally:allies) {
+            if(ally.hp < ally.maxHp) {
+                ally.GetDamage(this.damage[0]);
+                break;
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ public abstract class MainHero implements GameInt {
     protected String team;
     protected Battlefield bField;
 
+    public String state;
     static {
         MainHero.r = new Random();
     }
@@ -24,12 +25,13 @@ public abstract class MainHero implements GameInt {
         this.maxHp = hp;
         this.name = name;
         this.bField = new Battlefield(x, y);
+        state = "Stand";
     }
 
     @Override
     public String getAbout() {
-        return String.format("Team: %s  Name: %s  Type: %s  Hp: %d  RS: %d",
-                this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed);
+        return String.format("Team: %s  Name: %s  Type: %s  Hp: %d  RS: %d  State: %s",
+                this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed, this.state);
     }
 
     public int getHp() {
@@ -43,13 +45,15 @@ public abstract class MainHero implements GameInt {
     }
 
     public void GetDamage (int damage) {
-        if (this.hp - damage > 0) this.hp -= damage;
-        else this.hp = 0;
+        this.hp -= damage;
+        if (this.hp < 0) this.hp = 0;
+        if (this.hp > this.maxHp) this.hp = this.maxHp;
+        if (this.hp <= 0) this.state = "Die";
     }
 
-    public void Attack (MainHero target) {
-        target.GetDamage(MainHero.r.nextInt(10,20));
-    }
+//    public void Attack (MainHero target) {
+//        target.GetDamage(MainHero.r.nextInt(10,20));
+//    }
 
     public int getRunningSpeed() {
         return runningSpeed;

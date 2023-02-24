@@ -2,6 +2,7 @@ import Heroes.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +12,14 @@ public class Main {
         ArrayList<MainHero> sessionStep = team1;
         sessionStep.addAll(team2);
         sortByRS(sessionStep);
-        sessionStep.forEach(mainHero -> mainHero.step(team1, team2));
         for (MainHero item: sessionStep) { System.out.println(item.getAbout()); }
+
+        while (true) {
+            Scanner scn = new Scanner(System.in);
+            scn.nextLine();
+            sessionStep.forEach(mainHero -> mainHero.step(team1, team2));
+            for (MainHero item: sessionStep) { System.out.println(item.getAbout()); }
+        }
     }
 
     /**
@@ -53,7 +60,7 @@ public class Main {
         team.sort(new Comparator<MainHero>() {
             @Override
             public int compare(MainHero o1, MainHero o2) {
-                return o1.getRunningSpeed() - o2.getRunningSpeed();
+                return o2.getRunningSpeed() - o1.getRunningSpeed();
             }
         });
     }

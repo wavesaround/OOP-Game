@@ -29,7 +29,8 @@ public class XBowman extends MainHero {
     public boolean getArrows(ArrayList<MainHero> allies)  {
         boolean result = false;
         for (MainHero item : allies) {
-            if(item.getClass().getSimpleName().equals("Peasant") & item.getHp() > 0) {
+            if(item instanceof Heroes.Peasant && item.getHp() > 0) {
+                item.state = "Busy";
                 return true;
             }
         }
@@ -42,6 +43,7 @@ public class XBowman extends MainHero {
 
     @Override
     public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+        if (state.equals("Die") || shots == 0) return;
         ArrayList<MainHero> enemies;
         ArrayList<MainHero> allies;
         if(team1.contains(this)) { enemies = team2; allies = team1;}
@@ -50,19 +52,19 @@ public class XBowman extends MainHero {
         double minValue = Point2D.distance(this.bField.x, this.bField.y, enemies.get(0).bField.x, enemies.get(0).bField.y);
         double temp;
         MainHero target = enemies.get(0);
-        if(this.hp != 0) {
-            for (MainHero enemy:enemies) {
+
+        for (MainHero enemy:enemies) {
                 temp = Point2D.distance(this.bField.x, this.bField.y, enemies.get(0).bField.x, enemies.get(0).bField.y);
                 if(temp < minValue) {
                     minValue = temp;
                     target = enemy;
                 }
-            }
-
-            Attack(target);
-
-            this.shots -= this.getArrows(allies) ? 0 : 1;
         }
+
+        Attack(target);
+
+        this.shots -= this.getArrows(allies) ? 0 : 1;
+
     }
 
 }
