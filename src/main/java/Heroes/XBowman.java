@@ -1,7 +1,5 @@
 package Heroes;
 
-import com.sun.tools.javac.Main;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -19,13 +17,6 @@ public class XBowman extends MainHero {
         this.team = "Light";
     }
 
-    public void Attack (MainHero target) {
-        if (shots > 0) {
-            target.GetDamage(r.nextInt(this.damage[0], this.damage[1] + 1));
-        }
-        else target.GetDamage(0);
-    }
-
     public boolean getArrows(ArrayList<MainHero> allies)  {
         boolean result = false;
         for (MainHero item : allies) {
@@ -38,7 +29,7 @@ public class XBowman extends MainHero {
     }
 
     public String getAbout() {
-        return String.format("%s  Arrows: %d", super.getAbout(), this.shots);
+        return String.format("%s  Shots: %d", super.getAbout(), this.shots);
     }
 
     @Override
@@ -54,14 +45,15 @@ public class XBowman extends MainHero {
         MainHero target = enemies.get(0);
 
         for (MainHero enemy:enemies) {
-                temp = Point2D.distance(this.bField.x, this.bField.y, enemies.get(0).bField.x, enemies.get(0).bField.y);
-                if(temp < minValue) {
-                    minValue = temp;
-                    target = enemy;
-                }
+            temp = enemy.distance(this.bField.x, this.bField.y);
+            if(temp < minValue) {
+                minValue = temp;
+                target = enemy;
+            }
         }
 
-        Attack(target);
+        double dmg = (target.def - this.attack) > 0 ? this.damage[0] : this.damage[1];
+        target.getDamage(dmg);
 
         this.shots -= this.getArrows(allies) ? 0 : 1;
 

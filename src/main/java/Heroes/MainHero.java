@@ -30,8 +30,8 @@ public abstract class MainHero implements GameInt {
 
     @Override
     public String getAbout() {
-        return String.format("Team: %s  Name: %s  Type: %s  Hp: %d  RS: %d  State: %s",
-                this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed, this.state);
+        return String.format("Position: %-7s  Team: %-5s  Name: %-8s  Type: %-8s  Hp: %-2d  RS: %-1d  State: %-7s",
+                this.bField, this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed, this.state);
     }
 
     public int getHp() {
@@ -44,20 +44,24 @@ public abstract class MainHero implements GameInt {
         else this.hp += Hp;
     }
 
-    public void GetDamage (int damage) {
+    public void getDamage(double damage) {
         this.hp -= damage;
         if (this.hp < 0) this.hp = 0;
         if (this.hp > this.maxHp) this.hp = this.maxHp;
         if (this.hp <= 0) this.state = "Die";
     }
 
-//    public void Attack (MainHero target) {
-//        target.GetDamage(MainHero.r.nextInt(10,20));
-//    }
-
     public int getRunningSpeed() {
         return runningSpeed;
     }
 
+    public double distance(double x2, double y2)
+    {
+        int x1 = this.bField.x;
+        int y1 = this.bField.y;
+        x1 -= x2;
+        y1 -= y2;
+        return (Math.sqrt(x1 * x1 + y1 * y1)) * 1;
+    }
 }
 

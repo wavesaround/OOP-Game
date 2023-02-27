@@ -9,17 +9,20 @@ public class Main {
 
         ArrayList<MainHero> team1 = newTeam(10, true, 1);
         ArrayList<MainHero> team2 = newTeam(10, false, 10);
-        ArrayList<MainHero> sessionStep = team1;
-        sessionStep.addAll(team2);
-        sortByRS(sessionStep);
-        for (MainHero item: sessionStep) { System.out.println(item.getAbout()); }
+        ArrayList<MainHero> teams = new ArrayList<>();
+        teams.addAll(team1);
+        teams.addAll(team2);
+        sortByRS(teams);
+        for (MainHero item: teams) { System.out.println(item.getAbout()); }
 
         while (true) {
             Scanner scn = new Scanner(System.in);
             scn.nextLine();
-            sessionStep.forEach(mainHero -> mainHero.step(team1, team2));
-            for (MainHero item: sessionStep) { System.out.println(item.getAbout()); }
+            teams.forEach(mainHero -> mainHero.step(team1, team2));
+            for (MainHero item: teams) { System.out.println(item.getAbout()); }
         }
+
+
     }
 
     /**

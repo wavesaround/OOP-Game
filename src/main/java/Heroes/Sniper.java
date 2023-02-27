@@ -15,7 +15,7 @@ public class Sniper extends MainHero {
         this.team = "Dark";
     }
     public String getAbout() {
-        return String.format("%s  Arrows: %d", super.getAbout(), this.shots);
+        return String.format("%s  Shots: %d", super.getAbout(), this.shots);
     }
 
     public boolean getArrows(ArrayList<MainHero> allies)  {
@@ -28,18 +28,13 @@ public class Sniper extends MainHero {
         return result;
     }
 
-    public void Attack (MainHero target) {
-        if (shots > 0) {
-            target.GetDamage(r.nextInt(this.damage[0], this.damage[1] + 1));
-        }
-        else target.GetDamage(0);
-    }
     @Override
     public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
         ArrayList<MainHero> enemies;
         ArrayList<MainHero> allies;
-        if(team2.contains(this)) { enemies = team1; allies = team2;}
-        else { enemies = team2; allies = team1;}
+        if(team1.contains(this)) { enemies = team2; allies = team1; }
+        else { enemies = team1; allies = team2; }
+
         double minValue = Point2D.distance(
                 enemies.get(0).bField.x, enemies.get(0).bField.y, this.bField.x, this.bField.y
                 );
@@ -48,16 +43,17 @@ public class Sniper extends MainHero {
 
         if(this.hp != 0) {
             for (MainHero enemy:enemies) {
-                temp = Point2D.distance(enemies.get(0).bField.x, enemies.get(0).bField.y, this.bField.x, this.bField.y);
+                temp = enemy.distance(this.bField.x, this.bField.y);
                 if(temp < minValue) {
                     minValue = temp;
                     target = enemy;
                 }
             }
 
-            Attack(target);
+            double dmg = (target.def - this.attack) > 0 ? this.damage[0] : this.damage[1];
+            target.getDamage(dmg);
 
-            this.shots -= this.getArrows(allies) ? 0 : 1;Attack(target);
+            this.shots -= this.getArrows(allies) ? 0 : 1;
         }
     }
 }

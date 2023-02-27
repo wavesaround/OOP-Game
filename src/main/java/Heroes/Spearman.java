@@ -3,7 +3,6 @@ package Heroes;
 import java.util.ArrayList;
 
 public class Spearman extends MainHero {
-    protected boolean horse;
 
     public Spearman(String name, int x, int y) {
         super(name, 10, 4, x, y);
@@ -11,10 +10,9 @@ public class Spearman extends MainHero {
         this.def = 5;
         this.damage = new int[]{1, 3};
         this.team = "Light";
-        this.horse = true;
     }
     public String getAbout() {
-        return String.format("%s  Horse: %b", super.getAbout(), this.horse);
+        return String.format("%s", super.getAbout());
     }
 
     @Override
