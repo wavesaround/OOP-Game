@@ -21,8 +21,6 @@ public class Main {
             teams.forEach(mainHero -> mainHero.step(team1, team2));
             for (MainHero item: teams) { System.out.println(item.getAbout()); }
         }
-
-
     }
 
     /**

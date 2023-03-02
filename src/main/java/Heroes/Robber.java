@@ -11,6 +11,7 @@ public class Robber extends MainHero {
         this.damage = new int[]{2, 4};
         this.team = "Dark";
     }
+    // найти ближайшего, проверить расстояние (если меньше 2), понять в какую сторону, не стоит ли кто-то, сделать шаг, атаковать, если враг рядом
 
     public String getAbout() {
         return String.format("%s", super.getAbout());
