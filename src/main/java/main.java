@@ -1,25 +1,29 @@
 import Heroes.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
+public class main {
+    static final int UNITS = 10;
+    public static ArrayList<MainHero> holyTeam;
+    public static ArrayList<MainHero> darkTeam;
+    public static ArrayList<MainHero> teams = new ArrayList<>();
 
-public class Main {
     public static void main(String[] args) {
-
-        ArrayList<MainHero> team1 = newTeam(10, true, 1);
-        ArrayList<MainHero> team2 = newTeam(10, false, 10);
-        ArrayList<MainHero> teams = new ArrayList<>();
-        teams.addAll(team1);
-        teams.addAll(team2);
+        Scanner user_input = new Scanner(System.in);
+        System.out.println("Press Enter to begin");
+        user_input.nextLine();
+        holyTeam = newTeam(UNITS, true, 1);
+        darkTeam = newTeam(UNITS, false, 10);
+        teams.addAll(holyTeam);
+        teams.addAll(darkTeam);
         sortByRS(teams);
-        for (MainHero item: teams) { System.out.println(item.getAbout()); }
 
         while (true) {
-            Scanner scn = new Scanner(System.in);
-            scn.nextLine();
-            teams.forEach(mainHero -> mainHero.step(team1, team2));
-            for (MainHero item: teams) { System.out.println(item.getAbout()); }
+            View.view();
+            user_input.nextLine();
+            teams.forEach(mainHero -> mainHero.step(holyTeam, darkTeam));
         }
     }
 
@@ -36,7 +40,7 @@ public class Main {
                     else team.add(new Sniper(getName(), xStart, i));
                     break;
                 case (2):
-                    if (frac) team.add(new Monk(getName(), 1, 2));
+                    if (frac) team.add(new Monk(getName(), xStart, i));
                     else team.add(new Witch(getName(), xStart, i));
                     break;
                 case (3):

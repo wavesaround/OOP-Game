@@ -30,13 +30,15 @@ public abstract class MainHero implements GameInt {
 
     @Override
     public String getAbout() {
-        return String.format("Position: %-7s  Team: %-5s  Name: %-8s  Type: %-8s  Hp: %-2d  RS: %-1d  State: %-7s",
-                this.bField, this.team, this.name, this.getClass().getSimpleName(), this.hp, this.runningSpeed, this.state);
+        return String.format("Position: %-7s  Team: %-5s  Name: %-8s  Hp: %-2d  RS: %-1d  State: %-7s",
+                this.bField, this.team, this.name, this.hp, this.runningSpeed, this.state);
     }
 
     public int getHp() {
         return hp;
     }
+
+    public int[] getPos() {return new int[]{bField.x, bField.y};}
 
     public void getHp(int Hp) {
         if (Hp < 0) Hp *= 1;
@@ -62,6 +64,11 @@ public abstract class MainHero implements GameInt {
         x1 -= x2;
         y1 -= y2;
         return (Math.sqrt(x1 * x1 + y1 * y1)) * 1;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " " + this.name;
     }
 }
 
