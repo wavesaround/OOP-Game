@@ -8,10 +8,10 @@ public class Sniper extends MainHero {
 
     public Sniper(String name, int x, int y) {
         super(name, 15, 9, x, y);
-        this.attack = 12;
-        this.def = 10;
+        this.attack = 6;
+        this.def = 3;
         this.shots = 32;
-        this.damage = new int[]{8, 10};
+        this.damage = new int[]{2, 4};
         this.team = "Dark";
     }
     public String getAbout() {
@@ -35,19 +35,18 @@ public class Sniper extends MainHero {
         if(team1.contains(this)) { enemies = team2; allies = team1; }
         else { enemies = team1; allies = team2; }
 
-        double minValue = Point2D.distance(
-                enemies.get(0).bField.x, enemies.get(0).bField.y, this.bField.x, this.bField.y
-                );
-        double temp;
+        double minValue = 100;
+        double dist;
         MainHero target = enemies.get(0);
 
         if(this.hp != 0) {
             for (MainHero enemy:enemies) {
-                temp = enemy.distance(this.bField.x, this.bField.y);
-                if(temp < minValue) {
-                    minValue = temp;
+                dist = enemy.distance(this.bField.x, this.bField.y);
+                if(enemy.hp > 0 && dist < minValue) {
+                    minValue = dist;
                     target = enemy;
                 }
+
             }
 
             double dmg = (target.def - this.attack) > 0 ? this.damage[0] : this.damage[1];

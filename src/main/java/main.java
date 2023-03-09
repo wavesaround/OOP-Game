@@ -20,11 +20,14 @@ public class main {
         teams.addAll(darkTeam);
         sortByRS(teams);
 
-        while (true) {
+        while (whoWin(holyTeam) & whoWin(darkTeam)) {
             View.view();
             user_input.nextLine();
             teams.forEach(mainHero -> mainHero.step(holyTeam, darkTeam));
         }
+
+        if (!whoWin(holyTeam)) System.out.println("Dark Wins");
+        if (!whoWin(darkTeam)) System.out.println("Holy Wins");
     }
 
     /**
@@ -68,5 +71,13 @@ public class main {
                 return o2.getRunningSpeed() - o1.getRunningSpeed();
             }
         });
+    }
+
+    public static boolean whoWin (ArrayList<MainHero> team) {
+        for (MainHero hero:team)
+            if (hero.getHp() > 0) {
+                return true;
+            }
+        return false;
     }
 }

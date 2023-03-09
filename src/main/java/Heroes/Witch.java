@@ -26,9 +26,8 @@ public class Witch extends MainHero {
         else { allies = team2; }
 
         for (MainHero ally:allies) {
-            if(ally.hp < ally.maxHp) {
+            if(!ally.equals(this) && ally.hp < ally.maxHp && ally.hp > 0) {
                 ally.getDamage(this.damage[0]);
-                if (ally.hp > 0) { ally.state = "Revived"; }
                 break;
             }
         }

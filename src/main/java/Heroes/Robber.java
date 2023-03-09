@@ -11,7 +11,6 @@ public class Robber extends MainHero {
         this.damage = new int[]{2, 4};
         this.team = "Dark";
     }
-    // найти ближайшего, проверить расстояние (если меньше 2), понять в какую сторону, не стоит ли кто-то, сделать шаг, атаковать, если враг рядом
 
     public String getAbout() {
         return String.format("%s", super.getAbout());
@@ -19,6 +18,35 @@ public class Robber extends MainHero {
 
     @Override
     public void step(ArrayList<MainHero> team1, ArrayList<MainHero> team2) {
+        if (state.equals("Die")) return;
+        ArrayList<MainHero> enemies;
+        if(team1.contains(this)) enemies = team2;
+        else enemies = team1;
 
+        goAhead(enemies);
+
+        for (MainHero hero:enemies) {
+            if (this.distance(hero.bField.x, hero.bField.y) <= 2.0 && hero.hp > 0) {
+                double dmg = (hero.def - this.attack) > 0 ? this.damage[0] : this.damage[1];
+                hero.getDamage(dmg);
+                break;
+            }
+        }
+    }
+    private void goAhead(ArrayList<MainHero> enemies){
+        if(bField.x - 1 == 1) {
+            for (MainHero enemy:enemies) {
+                if (enemy.hp > 0 & enemy.bField.y - bField.y == 0) --bField.x;
+                if (enemy.hp > 0 & enemy.bField.y - bField.y > 0) --bField.y;
+                if (enemy.hp > 0 & enemy.bField.y - bField.y < 0) bField.y++;
+            }
+            if (bField.y == 11) --bField.y;
+            if (bField.y == 0) bField.y++;
+        }
+        else --this.bField.x;
+        for (MainHero hero:enemies) if(this.bField.equals(hero.bField)) {
+            ++bField.x;
+            goAhead(enemies);
+        }
     }
 }
